@@ -13,6 +13,8 @@
 #define UNDO LCTL(KC_Z)
 #define REDO LCTL(KC_Y)
 
+#define FLOW LCTL(LALT(KC_SPACE))
+
 
 // WIP for v2
 enum custom_layer {
@@ -28,15 +30,15 @@ enum custom_layer {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         [_MAIN] = LAYOUT(
         //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-            KC_GRV,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_BSPC,
+            QK_GESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_BSPC,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
             KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,  KC_BSLS,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
             KC_LCTL,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,  KC_SCLN, KC_QUOT,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-             XXXX,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   KC_DEL,           KC_ESC,   KC_N,    KC_M,  KC_COMM,  KC_DOT, KC_SLSH,   XXXX,
+             FLOW,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   KC_DEL,           KC_ESC,   KC_N,    KC_M,  KC_COMM,  KC_DOT, KC_SLSH,  KC_LGUI,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    LT(2,KC_LGUI), SC_LAPO, LT(1,KC_SPC), LT(3,KC_BSPC), SC_RSPC, LT(4,KC_ENT)
+                                    LT(2,KC_LGUI), SC_LAPO, LT(1,KC_BSPC),         LT(3,KC_SPACE), SC_RSPC, LT(4,KC_ENT)
         //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
 
             ),
@@ -50,16 +52,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
              XXXX,    XXXX,    XXXX,    XXXX,    XXXX,    XXXX,    ____,             XXXX,  KC_LCBR,   KC_1,    KC_2,    KC_3,   KC_GRV, KC_RCBR,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                            ____,    ____,    ____,                     KC_P0,  KC_PDOT, KC_PENT
+                                            ____,    ____,    ____,                      KC_0,   KC_DOT,  KC_ENT
         //                               └────────┴────────┴────────┘                 └────────┴────────┴────────┘
             ),
         [_FUNCS] = LAYOUT(
         //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-           QK_BOOT,   XXXX,    XXXX,    XXXX,    XXXX,   TO(6),                               XXXX,    XXXX,    XXXX,    XXXX,    XXXX,    XXXX,
+           QK_BOOT,   XXXX,    XXXX,    XXXX,    XXXX,   TO(6),                               XXXX,    XXXX,    XXXX,    XXXX,    XXXX,   EE_CLR,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-             XXXX,    XXXX,    XXXX,    XXXX,    XXXX,    XXXX,                             KC_PSCR,  KC_F7,   KC_F8,   KC_F9,   KC_F12,   XXXX,
+             XXXX,    XXXX,    XXXX,    XXXX,    XXXX,   KC_NUM,                            KC_PSCR,  KC_F7,   KC_F8,   KC_F9,   KC_F12,   XXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-             XXXX,  KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, KC_CAPS,                             KC_APP,  KC_F4,   KC_F5,   KC_F6,   KC_F11,   XXXX,
+             XXXX,  KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, KC_CAPS,                             KC_INS,  KC_F4,   KC_F5,   KC_F6,   KC_F11,   XXXX,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
              XXXX,    XXXX,    XXXX,    XXXX,    XXXX,    XXXX,    ____,             XXXX,  KC_PAUS,  KC_F1,   KC_F2,   KC_F3,   KC_F10,   XXXX,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
@@ -121,37 +123,41 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             )
 };
 
-bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-       for (uint8_t i = led_min; i < led_max; i++) {
-        switch(get_highest_layer(layer_state|default_layer_state)) {
-            case 7 ... 32:
-                rgb_matrix_set_color(i, RGB_TURQUOISE);
-                break;
-            case _GAME:
-                rgb_matrix_set_color(i, RGB_AZURE);
-                break;
-            case _MISC:
-                rgb_matrix_set_color(i, RGB_BLUE);
-                break;
-            case _MOUSE:
-                rgb_matrix_set_color(i, RGB_GREEN);
-                break;
-            case _NAVMEDIA:
-                rgb_matrix_set_color(i, RGB_YELLOW);
-                break;
-            case _FUNCS:
-                rgb_matrix_set_color(i, RGB_MAGENTA);
-                break;
-            case _NUMSYM:
-                rgb_matrix_set_color(i, RGB_CYAN);
-                break;
-            default:
-                rgb_matrix_set_color(i, RGB_PURPLE);
-                break;
-            }
-         }
-    return false;
-}
+// bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+//        for (uint8_t i = led_min; i < led_max; i++) {
+//             // if (g_led_config.flags[i] & LED_FLAG_UNDERGLOW) {
+//             //         rgb_matrix_set_color(i, RGB_BLACK);
+//             //         continue;
+//             //     }
+//         switch(get_highest_layer(layer_state|default_layer_state)) {
+//             case 7 ... 32:
+//                 rgb_matrix_set_color(i, RGB_TURQUOISE);
+//                 break;
+//             case _GAME:
+//                 rgb_matrix_set_color(i, RGB_AZURE);
+//                 break;
+//             case _MISC:
+//                 rgb_matrix_set_color(i, RGB_BLUE);
+//                 break;
+//             case _MOUSE:
+//                 rgb_matrix_set_color(i, RGB_GREEN);
+//                 break;
+//             case _NAVMEDIA:
+//                 rgb_matrix_set_color(i, RGB_YELLOW);
+//                 break;
+//             case _FUNCS:
+//                 rgb_matrix_set_color(i, RGB_MAGENTA);
+//                 break;
+//             case _NUMSYM:
+//                 rgb_matrix_set_color(i, RGB_CYAN);
+//                 break;
+//             default:
+//                 rgb_matrix_set_color(i, RGB_PURPLE);
+//                 break;
+//             }
+//          }
+//     return false;
+// }
 
 // ~ Shows both dynamic color setting outside of a loop, and how to check flags
 //
