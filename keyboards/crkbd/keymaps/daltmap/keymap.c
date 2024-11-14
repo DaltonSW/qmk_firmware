@@ -18,21 +18,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 
-#define XXXX KC_NO
+#define XXXX  KC_NO
 #define XXXXX KC_NO
 
-#define ____ KC_TRNS
-#define _____ KC_TRNS
+#define ____   KC_TRNS
+#define _____  KC_TRNS
 #define PUSHED KC_TRNS
 
 #define QUOT KC_QUOT
 #define COMM KC_COMM
-#define PERD KC_DOT
+
+#define WN_PD LWIN_T(KC_DOT)
+#define WIN_X LWIN_T(KC_X)
 
 #define CTL_Z LCTL_T(KC_Z)
 #define CT_SL RCTL_T(KC_SLSH)
 
 #define FLOW LCTL(LALT(KC_SPACE))
+
+#define ALT_ESC LALT_T(KC_ESC)
+
+#define ONE_SPC LT(1,KC_SPC)
+#define TWO_BSP LT(2,KC_BSPC)
+#define THR_ENT LT(3,KC_ENT)
 
 enum custom_layer {
     _MAIN,      // 0
@@ -48,9 +56,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //┣--------╋--------╋--------╋--------╋--------┫                    ┣--------╋--------╋--------╋--------╋--------┫
          KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L,    QUOT,
     //┣--------╋--------╋--------╋--------╋--------┫                    ┣--------╋--------╋--------╋--------╋--------┫
-        CTL_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M,    COMM,    PERD,   CT_SL,
+        CTL_Z,   WIN_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M,    COMM,   WN_PD,   CT_SL,
     //┗--------┻--------╋--------╋--------╋--------┫                    ┣--------╋--------╋--------╋--------┻--------┛
-                        LT(2,FLOW), LALT_T(KC_ESC), KC_BSPC,            LT(1,KC_SPC), KC_LSFT, LT(3,KC_ENT)
+                           FLOW,  ALT_ESC, TWO_BSP,                      ONE_SPC, KC_LSFT, THR_ENT
                     //  ┗--------┻--------┻--------┛                    ┗--------┻--------┻--------┛
 
 
