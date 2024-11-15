@@ -338,6 +338,7 @@ __attribute__((weak)) void oled_render_test(void) {
 
 __attribute__((weak)) void oled_print_info(void) {
     led_t led_state = host_keyboard_led_state();
+    uint8_t mods = get_mods();
 
     oled_write_P(PSTR("Curr."), false);
     oled_write_ln_P(PSTR("Layer"), false);
@@ -364,6 +365,12 @@ __attribute__((weak)) void oled_print_info(void) {
             oled_write_P(PSTR("Undef"), false);
             oled_write_ln_P(PSTR("     "), false);
     }
+
+    oled_set_cursor(0, 9);
+    oled_write_P(mods & MOD_MASK_SHIFT ? PSTR("SHIFT") : PSTR("     "), false);
+    oled_write_P(mods & MOD_MASK_CTRL ? PSTR("CTRL ") : PSTR("     "), false);
+    oled_write_P(mods & MOD_MASK_ALT ? PSTR("ALT  ") : PSTR("     "), false);
+    oled_write_P(mods & MOD_MASK_GUI ? PSTR("META ") : PSTR("     "), false);
 
     oled_set_cursor(0,14);
     oled_write_P(led_state.caps_lock ? PSTR("CAPS<") : PSTR("caps "), false);
