@@ -37,7 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define FLOW LCTL(LALT(KC_SPACE))
 
-#define ALT_ESC LALT_T(KC_ESC)
+#define CTL_ESC LCTL_T(KC_ESC)
 
 #define ONE_SPC LT(1,KC_SPC)
 #define TWO_BSP LT(2,KC_BSPC)
@@ -59,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //┣--------╋--------╋--------╋--------╋--------┫                    ┣--------╋--------╋--------╋--------╋--------┫
         CTL_Z,   WIN_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M,    COMM,   WN_PD,   CT_SL,
     //┗--------┻--------╋--------╋--------╋--------┫                    ┣--------╋--------╋--------╋--------┻--------┛
-                           FLOW,  ALT_ESC, TWO_BSP,                      ONE_SPC, KC_LSFT, THR_ENT
+                           KC_LWIN,  CTL_ESC, TWO_BSP,                      ONE_SPC, KC_LSFT, THR_ENT
                     //  ┗--------┻--------┻--------┛                    ┗--------┻--------┻--------┛
 
 
