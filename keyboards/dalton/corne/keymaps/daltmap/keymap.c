@@ -62,8 +62,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //┗--------┻--------╋--------╋--------╋--------┫                    ┣--------╋--------╋--------╋--------┻--------┛
                            KC_LWIN,  CTL_ESC, TWO_BSP,                      ONE_SPC, KC_LSFT, THR_ENT
                     //  ┗--------┻--------┻--------┛                    ┗--------┻--------┻--------┛
-
-
     ),
 
 	[_NUMSYM] = LAYOUT_split_3x5_3(
@@ -92,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	[_FUNCS] = LAYOUT_split_3x5_3(
     //┏--------┳--------┳--------┳--------┳--------┓                    ┏--------┳--------┳--------┳--------┳--------┓
-        XXXXX,   XXXXX,   XXXXX,   XXXXX,   XXXXX,                       KC_PSCR,  KC_F7,   KC_F8,   KC_F9,   KC_F12,
+     TG(_GAMES),  XXXXX,   XXXXX,   XXXXX,   XXXXX,                       KC_PSCR,  KC_F7,   KC_F8,   KC_F9,   KC_F12,
     //┣--------╋--------╋--------╋--------╋--------┫                    ┣--------╋--------╋--------╋--------╋--------┫
         KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXX,                        KC_INS,  KC_F4,   KC_F5,   KC_F6,   KC_F11,
     //┣--------╋--------╋--------╋--------╋--------┫                    ┣--------╋--------╋--------╋--------╋--------┫
@@ -110,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //┣--------╋--------╋--------╋--------╋--------┫                    ┣--------╋--------╋--------╋--------╋--------┫
          KC_Z,   KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M,    COMM,   KC_DOT,   KC_SLSH,
     //┗--------┻--------╋--------╋--------╋--------┫                    ┣--------╋--------╋--------╋--------┻--------┛
-                         KC_LSFT,  KC_ESC, KC_SPACE,                      ONE_SPC, KC_LSFT, THR_ENT
+                         KC_LSFT,  KC_ESC, KC_SPACE,                      ONE_SPC, KC_ENT, TG(_GAMES)
                     //  ┗--------┻--------┻--------┛                    ┗--------┻--------┻--------┛
     )
 
@@ -128,6 +126,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ┏┳┓
 // ┣╋┫
 // ┗┻┛
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    // If the _GAMES layer is active
+    if (get_highest_layer(state) == _GAMES) {
+        rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
+        rgb_matrix_sethsv_noeeprom(HSV_MAGENTA); // Set the color to red
+    } else {
+        // Otherwise, revert to the default RGB Matrix mode
+        rgb_matrix_mode(RGB_MATRIX_JELLYBEAN_RAINDROPS); // Revert to a default mode
+    }
+    return state;
+}
 
 #ifdef OLED_ENABLE
 
